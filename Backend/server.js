@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
+app.use(express.json())
 
+const staffRoute = require('./routes/staffroute')
+app.use('/staff', staffRoute)
 app.get('/', (req, res) => {
   res.send('hello world')
 })
