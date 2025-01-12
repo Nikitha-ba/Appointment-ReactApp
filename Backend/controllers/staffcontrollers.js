@@ -10,4 +10,21 @@ const getStaff = async(req, res) => {
     }
 }
 
-module.exports = {getStaff}
+const getLoginuser = async(req, res) => {
+    try {
+        const {user, pass} = req.body
+        const token = await StaffService.getLoginuser(user, pass)
+        const response = {
+            success:true,
+            message:'Login Successful..!',
+            token
+        }
+        res.status(200).cookie('Authorization', 'Bearer '+token).json(response)
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error})
+    }
+}
+
+module.exports = {getStaff, getLoginuser}
