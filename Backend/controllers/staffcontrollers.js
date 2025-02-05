@@ -29,11 +29,11 @@ const getLoginuser = async(req, res) => {
 const registerUser = async(req, res) => {
     try {
         const {firstname, lastname, gender, address, phone, user, pass} = req.body
-        const token = await StaffService.registerUser(firstname, lastname, gender, address, phone, user, pass)
+        const userName = await StaffService.registerUser(firstname, lastname, gender, address, phone, user, pass)
         const response = {
             success:true,
             message:'Registration Successful..!',
-            token
+            userName
 
         }
         res.status(201).json(response)

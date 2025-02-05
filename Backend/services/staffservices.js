@@ -52,8 +52,7 @@ const registerUser = async(firstname, lastname, gender, address, phone, user, pa
         const hashedpass = await bcrypt.hash(pass, 10)
         const result1 = await pool.query(`insert into staff (firstname, lastname, gender, address, phone, username, password) values ('${firstname}', '${lastname}', '${gender}','${address}','${phone}', '${user}', '${hashedpass}')`)
         console.log('result',result1)
-        const userdata = result1.rows[0]
-        return "Successful"
+        return user
     }
     catch(error){
         console.log(error)
