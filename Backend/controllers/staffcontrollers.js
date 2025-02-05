@@ -26,5 +26,24 @@ const getLoginuser = async(req, res) => {
         res.status(500).json({error})
     }
 }
+const registerUser = async(req, res) => {
+    try {
+        const {firstname, lastname, gender, address, phone, user, pass} = req.body
+        const token = await StaffService.registerUser(firstname, lastname, gender, address, phone, user, pass)
+        const response = {
+            success:true,
+            message:'Registration Successful..!',
+            token
 
-module.exports = {getStaff, getLoginuser}
+        }
+        res.status(201).json(response)
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error})
+    }
+}
+
+
+
+module.exports = {getStaff, getLoginuser, registerUser}

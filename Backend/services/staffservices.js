@@ -37,21 +37,23 @@ const getLoginuser = async(user, pass) => {
     
 }
 
-const registerUser = async(user, pass) => {
+const registerUser = async(firstname, lastname, gender, address, phone, user, pass) => {
     try{
-        if (user == "" || pass == "")
-        {
-            throw new Error("User or password can not be null")
-        }
         const result = await pool.query(`select * from staff where username = '${user}'`)
         console.log('result',result)
-        const userdata = result.rows[0]
-        const match = await bcrypt.compare(pass, userdata.password)
-        if (!match) {
-            throw new Error("Invalid credentials")
+        if (result.rows.length > 0) {
+            throw new Error("User Already exist")
         }
-        const token = jwt.sign({user:user}, process.env.JWT_SECRET, {expiresIn:"1h"}) 
-        return token
+
+        if (firstname == "" || lastname == "" || gender =="" || address == "" || phone == "" || user == "" || pass == "")
+        {
+            throw new Error("All fields required")
+        }
+        const hashedpass = await bcrypt.hash(pass, 10)
+        const result1 = await pool.query(`insert into staff (firstname, lastname, gender, address, phone, username, password) values ('${firstname}', '${lastname}', '${gender}','${address}','${phone}', '${user}', '${hashedpass}')`)
+        console.log('result',result1)
+        const userdata = result1.rows[0]
+        return "Successful"
     }
     catch(error){
         console.log(error)
@@ -60,4 +62,4 @@ const registerUser = async(user, pass) => {
     
 }
 
-module.exports = {getStaff, getLoginuser}
+module.exports = {getStaff, getLoginuser, registerUser}
