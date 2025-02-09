@@ -31,7 +31,7 @@ const getLoginuser = async(user, pass) => {
         return token
     }
     catch(error){
-        console.log(error)
+        //console.log(error)
         throw error
     }
     
