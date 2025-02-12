@@ -28,8 +28,8 @@ const getLoginuser = async(req, res) => {
 }
 const registerUser = async(req, res) => {
     try {
-        const {firstname, lastname, gender, address, phone, user, pass} = req.body
-        const userName = await StaffService.registerUser(firstname, lastname, gender, address, phone, user, pass)
+        const {firstname, lastname, designation, gender, address, phone, salary, user, pass} = req.body
+        const userName = await StaffService.registerUser(firstname, lastname,designation, gender, address, phone, salary, user, pass)
         const response = {
             success:true,
             message:'Registration Successful..!',

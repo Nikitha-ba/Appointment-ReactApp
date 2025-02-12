@@ -37,7 +37,7 @@ const getLoginuser = async(user, pass) => {
     
 }
 
-const registerUser = async(firstname, lastname, gender, address, phone, user, pass) => {
+const registerUser = async(firstname, lastname, designation, gender, address, phone, salary, user, pass) => {
     try{
         const result = await pool.query(`select * from staff where username = '${user}'`)
         console.log('result',result)
@@ -45,12 +45,12 @@ const registerUser = async(firstname, lastname, gender, address, phone, user, pa
             throw new Error("User Already exist")
         }
 
-        if (firstname == "" || lastname == "" || gender =="" || address == "" || phone == "" || user == "" || pass == "")
+        if (firstname == "" || lastname == "" || designation =="" || gender =="" || address == "" || phone == "" || salary == "" || user == "" || pass == "")
         {
             throw new Error("All fields required")
         }
         const hashedpass = await bcrypt.hash(pass, 10)
-        const result1 = await pool.query(`insert into staff (firstname, lastname, gender, address, phone, username, password) values ('${firstname}', '${lastname}', '${gender}','${address}','${phone}', '${user}', '${hashedpass}')`)
+        const result1 = await pool.query(`insert into staff (firstname, lastname, designation, gender, address, phone, salary, username, password) values ('${firstname}', '${lastname}', '${designation}', '${gender}','${address}','${phone}', '${salary}', '${user}', '${hashedpass}')`)
         console.log('result',result1)
         return user
     }
