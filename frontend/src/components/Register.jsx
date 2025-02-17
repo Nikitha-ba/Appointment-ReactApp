@@ -45,35 +45,35 @@ const Register = () => {
 
     return (
       <div><Form onSubmit={loginHandler}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicFirstname">
         <Form.Label>Firstname</Form.Label>
-        <Form.Control type="text" placeholder="Enter firstname" value = {firstname} onChange={(e)=>setFirstname(e.target.value)}/>
+        <Form.Control type="text" placeholder="Enter Firstname" value = {firstname} onChange={(e)=>setFirstname(e.target.value)}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicLastname">
         <Form.Label>Lastname</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" value = {lastname} onChange={(e)=>setLastname(e.target.value)}/>
+        <Form.Control type="text" placeholder="Enter Lastname" value = {lastname} onChange={(e)=>setLastname(e.target.value)}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicDesignation">
         <Form.Label>Designation</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" value = {designation} onChange={(e)=>setDesignation(e.target.value)}/>
+        <Form.Control type="text" placeholder="Enter Designation" value = {designation} onChange={(e)=>setDesignation(e.target.value)}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicGender">
         <Form.Label>Gender</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" value = {gender} onChange={(e)=>setGender(e.target.value)}/>
+        <Form.Control type="text" placeholder="Enter Gender" value = {gender} onChange={(e)=>setGender(e.target.value)}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicAddress">
         <Form.Label>Address</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" value = {address} onChange={(e)=>setaddress(e.target.value)}/>
+        <Form.Control type="text" placeholder="Enter Address" value = {address} onChange={(e)=>setaddress(e.target.value)}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicPhone">
         <Form.Label>Phone</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" value = {phone} onChange={(e)=>setPhone(e.target.value)}/>
+        <Form.Control type="text" placeholder="Enter Phone" value = {phone} onChange={(e)=>setPhone(e.target.value)}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicSalary">
         <Form.Label>Salary</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" value = {salary} onChange={(e)=>setSalary(e.target.value)}/>
+        <Form.Control type="text" placeholder="Enter Salary" value = {salary} onChange={(e)=>setSalary(e.target.value)}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicUsername">
         <Form.Label>username</Form.Label>
         <Form.Control type="text" placeholder="Enter username" value = {username} onChange={(e)=>setUsername(e.target.value)}/>
       </Form.Group>
