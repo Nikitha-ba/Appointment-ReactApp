@@ -44,6 +44,24 @@ const registerUser = async(req, res) => {
     }
 }
 
+const bookAppointment = async(req, res) => {
+    try {
+        const {pid, sid, apt_dt} = req.body
+        const apt = await StaffService.bookAppointment(pid, sid, apt_dt)
+        const response = {
+            success:true,
+            message:'Appointment booked successfully..!',
+            apt
+
+        }
+        res.status(201).json(response)
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message:error.message})
+    }
+}
 
 
-module.exports = {getStaff, getLoginuser, registerUser}
+
+module.exports = {getStaff, getLoginuser, registerUser, bookAppointment}

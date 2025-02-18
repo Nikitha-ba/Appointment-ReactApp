@@ -61,4 +61,27 @@ const registerUser = async(firstname, lastname, designation, gender, address, ph
     
 }
 
-module.exports = {getStaff, getLoginuser, registerUser}
+const bookAppointment = async(pid, sid, apt_dt) => {
+    try{
+        const result = await pool.query(`select * from appointment where pid = '${pid}'and sid = '${sid}' and apt_dt = '${apt_dt}'`)
+        console.log('result',result)
+        if (result.rows.length > 0) {
+            throw new Error("Appointment already booked")
+        }
+
+        if (pid == "" || sid == "" || apt_dt =="")
+        {
+            throw new Error("All fields required")
+        }
+        const result1 = await pool.query(`insert into appointment (pid, sid, apt_dt) values ('${pid}', '${sid}', '${apt_dt}')`)
+        console.log('result',result1)
+        return result1.rows[0]
+    }
+    catch(error){
+        console.log(error)
+        throw error
+    }
+    
+}
+
+module.exports = {getStaff, getLoginuser, registerUser, bookAppointment}
