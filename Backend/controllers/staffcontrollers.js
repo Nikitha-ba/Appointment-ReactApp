@@ -10,6 +10,26 @@ const getStaff = async(req, res) => {
     }
 }
 
+const getApt = async(req, res) => {
+    try {
+        const data = await StaffService.getApt()
+        res.status(200).json(data)
+    } catch (error) {
+        res.status(500).json({error:'failed to respond'})
+        console.log(error)
+    }
+}
+
+const getPat = async(req, res) => {
+    try {
+        const data = await StaffService.getPat()
+        res.status(200).json(data)
+    } catch (error) {
+        res.status(500).json({error:'failed to respond'})
+        console.log(error)
+    }
+}
+
 const getLoginuser = async(req, res) => {
     try {
         const {user, pass} = req.body
@@ -64,4 +84,4 @@ const bookAppointment = async(req, res) => {
 
 
 
-module.exports = {getStaff, getLoginuser, registerUser, bookAppointment}
+module.exports = {getStaff, getApt, getPat, getLoginuser, registerUser, bookAppointment}

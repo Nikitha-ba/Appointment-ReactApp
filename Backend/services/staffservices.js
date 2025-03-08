@@ -14,6 +14,30 @@ const getStaff = async() => {
     
 }
 
+const getApt = async() => {
+    try{
+        const result = await pool.query('select * from appointment;')
+        console.log('result',result)
+        return result.rows
+    }
+    catch(error){
+        console.log(error)
+    }
+    
+}
+
+const getPat = async() => {
+    try{
+        const result = await pool.query('select * from patients;')
+        console.log('result',result)
+        return result.rows
+    }
+    catch(error){
+        console.log(error)
+    }
+    
+}
+
 const getLoginuser = async(user, pass) => {
     try{
         if (user == "" || pass == "")
@@ -84,4 +108,4 @@ const bookAppointment = async(pid, sid, apt_dt) => {
     
 }
 
-module.exports = {getStaff, getLoginuser, registerUser, bookAppointment}
+module.exports = {getStaff, getApt, getPat, getLoginuser, registerUser, bookAppointment}
