@@ -14,6 +14,12 @@ const HomePage = () => {
   const navigateBookAppointment = () => {
     navigate("/appointment")
   }
+  const navigateAddPatient = () => {
+    navigate("/patient")
+  }
+  const navigateAddStaff = () => {
+    navigate("/staff")
+  }
     return (
       <div className="text-center">
         <h1 className="my-4">HomePage</h1>
@@ -35,10 +41,10 @@ const HomePage = () => {
               <Button variant="outline-primary" onClick={navigateBookAppointment}>Book Appointment</Button>
             </Col>
             <Col md={4} className="d-grid gap-2">
-              <Button variant="outline-primary">Add Patient</Button>
+              <Button variant="outline-primary" onClick={navigateAddPatient}>Add Patient</Button>
             </Col>
             <Col md={4} className="d-grid gap-2">
-              <Button variant="outline-primary">Add Staff</Button>
+              <Button variant="outline-primary" onClick={navigateAddStaff}>Add Staff</Button>
             </Col>
           </Row>
           {
