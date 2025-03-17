@@ -12,13 +12,12 @@ const Patient = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
-  const [time, setTime] = useState(null);
-  const [aptDateTime, setAptDateTime] = useState("");
+  const [dob, setdob] = useState("");
   const [gender, setGender] = useState("")
   const [address, setAddress] = useState("")
   const [phone, setPhone] = useState("")
 
-  const getFormattedDateTime = () => {
+  const getFormattedDate = () => {
     if (!selectedDate) return "";
 
     const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA", {
@@ -27,13 +26,12 @@ const Patient = () => {
       day: "2-digit",
     }).replace(/-/g, "/");
 
-    setAptDateTime(`${formattedDate}`);
+    setdob(`${formattedDate}`);
   };
 
   const addPatientHandler = async (e) => {
     e.preventDefault();
-    console.log(selectedDate, time, "abcd");
-    getFormattedDateTime()
+    getFormattedDate()
     const payload = {
       firstname: firstname,
       lastname: lastname,
@@ -45,7 +43,7 @@ const Patient = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/staff/patient",
+        "http://localhost:3000/staff/patientDetails",
         payload
       );
       if (response.data.success) {
@@ -91,6 +89,7 @@ const Patient = () => {
               onChange={(date) => setSelectedDate(date)}
               className="form-control me-3"
               placeholderText="Select Date"
+              maxDate={new Date()}
             />
           </div>
         </Form.Group>

@@ -14,6 +14,7 @@ const Appointment = () => {
   const [staffId, setStaffId] = useState("");
   const [time, setTime] = useState(null);
   const [aptDateTime, setAptDateTime] = useState("");
+  const [minTime, setMinTime] = useState("");
 
   const getFormattedDateTime = () => {
     if (!selectedDate || time === null) return "";
@@ -22,6 +23,7 @@ const Appointment = () => {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const formattedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+    setMinTime(`${hours}:${minutes}`);
     const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA", {
       year: "numeric",
       month: "2-digit",
@@ -89,11 +91,24 @@ const Appointment = () => {
               onChange={(date) => setSelectedDate(date)}
               className="form-control me-3"
               placeholderText="Select Date"
+              minDate={new Date()}
             />
-            <TimePicker
+            
+            {/* <TimePicker
               onChange={setTime} // Fixed
               value={time} // Fixed
+              minTime={minTime}
               className="form-control"
+            /> */}
+
+            <DatePicker
+              selected={time}
+              onChange={(time) => setTime(time)}
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={15}
+              timeCaption="Time"
+              dateFormat="h:mm aa"
             />
           </div>
         </Form.Group>

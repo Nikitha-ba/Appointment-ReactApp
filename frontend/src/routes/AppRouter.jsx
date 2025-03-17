@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/staff",
-        element: <Patient/>
+        element: <Staff/>
       },
   ]);
 

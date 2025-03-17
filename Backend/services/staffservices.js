@@ -85,6 +85,29 @@ const registerUser = async(firstname, lastname, designation, gender, address, ph
     
 }
 
+const patientDetails = async(firstname, lastname, dob, gender, address, phone) => {
+    try{
+        const result = await pool.query(`select * from patients where firstname = '${firstname}'and lastname = '${lastname}' and dob = '${dob}'`)
+        console.log('result',result)
+        if (result.rows.length > 0) {
+            throw new Error("Patient already exists..!")
+        }
+
+        if (firstname == "" || lastname == "" || dob =="" || gender =="" || address == "" || phone == "")
+        {
+            throw new Error("All fields required")
+        }
+        const result1 = await pool.query(`insert into patients (firstname, lastname, dob, gender, address, phone) values ('${firstname}', '${lastname}', '${dob}', '${gender}','${address}','${phone}')`)
+        console.log('result',result1)
+        return result1.rows[0]
+    }
+    catch(error){
+        console.log(error)
+        throw error
+    }
+    
+}
+
 const bookAppointment = async(pid, sid, apt_dt) => {
     try{
         const result = await pool.query(`select * from appointment where pid = '${pid}'and sid = '${sid}' and apt_dt = '${apt_dt}'`)
@@ -108,4 +131,4 @@ const bookAppointment = async(pid, sid, apt_dt) => {
     
 }
 
-module.exports = {getStaff, getApt, getPat, getLoginuser, registerUser, bookAppointment}
+module.exports = {getStaff, getApt, getPat, getLoginuser, registerUser, patientDetails, bookAppointment}
