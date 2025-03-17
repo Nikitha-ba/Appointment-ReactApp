@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "react-datepicker/dist/react-datepicker.css";
-import TimePicker from "react-bootstrap-time-picker";
 import axios from "axios"; // Ensure axios is imported
+import { setHours, setMinutes } from "date-fns";
 
 const Appointment = () => {
   const navigate = useNavigate();
@@ -14,7 +14,6 @@ const Appointment = () => {
   const [staffId, setStaffId] = useState("");
   const [time, setTime] = useState(null);
   const [aptDateTime, setAptDateTime] = useState("");
-  const [minTime, setMinTime] = useState("");
 
   const getFormattedDateTime = () => {
     if (!selectedDate || time === null) return "";
@@ -23,7 +22,6 @@ const Appointment = () => {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const formattedTime = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
-    setMinTime(`${hours}:${minutes}`);
     const formattedDate = new Date(selectedDate).toLocaleDateString("en-CA", {
       year: "numeric",
       month: "2-digit",
@@ -32,6 +30,7 @@ const Appointment = () => {
 
     setAptDateTime(`${formattedDate} ${formattedTime}`);
   };
+
 
   const bookAppointmentHandler = async (e) => {
     e.preventDefault();
@@ -93,22 +92,18 @@ const Appointment = () => {
               placeholderText="Select Date"
               minDate={new Date()}
             />
-            
-            {/* <TimePicker
-              onChange={setTime} // Fixed
-              value={time} // Fixed
-              minTime={minTime}
-              className="form-control"
-            /> */}
-
             <DatePicker
+              placeholderText="Select Time"
               selected={time}
+              className="form-control me-3"
               onChange={(time) => setTime(time)}
               showTimeSelect
               showTimeSelectOnly
               timeIntervals={15}
               timeCaption="Time"
               dateFormat="h:mm aa"
+              minTime={new Date()}
+              maxTime={setHours(setMinutes(new Date(), 30), 21)}
             />
           </div>
         </Form.Group>
