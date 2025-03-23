@@ -14,6 +14,7 @@ const Staff = () => {
   const [salary, setSalary] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
 
   const loginHandler = async (e) => 
     {
@@ -30,7 +31,7 @@ const Staff = () => {
         pass: password
       }
       try {
-        const response = await axios.post("http://localhost:3000/staff/register", payload)
+        const response = await axios.post("http://localhost:3001/staff/register", payload)
         if (response.data.success)
         {
           navigate("/")
@@ -81,9 +82,15 @@ const Staff = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" value = {password} onChange={(e)=>setPassword(e.target.value)}/>
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <div className="d-flex gap-2 justify-content-center">
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+
+          <Button variant="secondary" onClick={()=>navigate("/")}>
+            Back
+          </Button>
+        </div>
     </Form></div>
   )
 }

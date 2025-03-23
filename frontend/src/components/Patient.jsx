@@ -16,6 +16,7 @@ const Patient = () => {
   const [gender, setGender] = useState("")
   const [address, setAddress] = useState("")
   const [phone, setPhone] = useState("")
+  
 
   const getFormattedDate = () => {
     if (!selectedDate) return "";
@@ -43,7 +44,7 @@ const Patient = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/staff/patientDetails",
+        "http://localhost:3001/staff/patientDetails",
         payload
       );
       if (response.data.success) {
@@ -124,9 +125,16 @@ const Patient = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <div className="d-flex gap-2 justify-content-center">
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+
+          <Button variant="secondary" onClick={()=>navigate("/")}>
+            Back
+          </Button>
+        </div>
+
       </Form>
     </div>
   );

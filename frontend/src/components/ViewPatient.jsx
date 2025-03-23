@@ -12,7 +12,7 @@ const ViewPatient = () => {
 
     const fetchPatientData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/staff/getpat")
+        const response = await axios.get("http://localhost:3001/staff/getpat")
       if (response?.data?.length>0)
       {
         console.log(response.data)

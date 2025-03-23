@@ -30,7 +30,7 @@ const Register = () => {
         pass: password
       }
       try {
-        const response = await axios.post("http://localhost:3000/staff/register", payload)
+        const response = await axios.post("http://localhost:3001/staff/register", payload)
         if (response.data.success)
         {
           navigate("/")

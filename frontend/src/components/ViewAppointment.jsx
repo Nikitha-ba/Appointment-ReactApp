@@ -11,7 +11,7 @@ const ViewAppointment = () => {
     useEffect(() => {
       const fetchAptData = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/staff/getApt")
+          const response = await axios.get("http://localhost:3001/staff/getApt")
           if (response?.data?.length > 0) {
             console.log(response.data)
             setAptData(response.data)

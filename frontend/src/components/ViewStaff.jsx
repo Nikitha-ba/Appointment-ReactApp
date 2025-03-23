@@ -12,7 +12,7 @@ const ViewStaff = () => {
 
     const fetchStaffData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/staff")
+        const response = await axios.get("http://localhost:3001/staff")
       if (response?.data?.length>0)
       {
         console.log(response.data)

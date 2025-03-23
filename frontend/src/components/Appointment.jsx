@@ -44,7 +44,7 @@ const Appointment = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/staff/appointment",
+        "http://localhost:3001/staff/appointment",
         payload
       );
       if (response.data.success) {
@@ -107,11 +107,16 @@ const Appointment = () => {
             />
           </div>
         </Form.Group>
+        <div className="d-flex gap-2 justify-content-center">
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+          <Button variant="secondary" onClick={()=>navigate("/")}>
+            Back
+          </Button>
+        </div>
+        </Form>
     </div>
   );
 };

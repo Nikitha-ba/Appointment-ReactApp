@@ -15,9 +15,10 @@ const Login = () => {
       pass: password
     }
     try {
-      const response = await axios.post("http://localhost:3000/staff/login", payload)
+      const response = await axios.post("http://localhost:3001/staff/login", payload)
       if (response.data.success)
       {
+        localStorage.setItem("userToken",response.data.token)
         navigate("/")
       }
       else{
