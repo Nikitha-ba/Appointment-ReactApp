@@ -10,9 +10,26 @@ import HomePage from '../components/HomePage';
 import Appointment from '../components/Appointment';
 import Patient from '../components/Patient';
 import Staff from '../components/Staff';
+import {jwtDecode} from 'jwt-decode';
 
 const isAuthenticated = ()=> {
-  return localStorage.getItem("userToken") != null
+  const lsToken = localStorage.getItem("userToken")
+  if (!lsToken)
+  {
+    return false
+  }
+  try {
+    const decode = jwtDecode(lsToken)
+    const currentTime = Date.now()/1000
+    if (decode?.exp < currentTime) 
+    {
+      localStorage.removeItem('userToken')
+    }
+    return true
+  } catch (error) {
+    localStorage.removeItem('userToken')
+    return false
+  }
 }
 
 const ProtectedRoute = ({component}) => {
